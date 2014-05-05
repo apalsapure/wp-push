@@ -1,0 +1,113 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Push.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" 
+    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--Data context is set to sample data above and LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <ProgressBar x:Name="progress" IsIndeterminate="True" VerticalAlignment="Top" />
+        <controls:Pivot Margin="0,0,0,0" Title="PUSH NOTIFICATION DEMO">
+            <controls:PivotItem Header="toast" Margin="0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Keep this app running to see the Push Notifications received from the Appacitive Server." Margin="24,0,24,10" TextWrapping="Wrap" 
+                            Style="{StaticResource PhoneTextSmallStyle}"></TextBlock>
+                    <ListBox x:Name="toastListBox" Grid.Row="1" Margin="14,0,0,0" ItemsSource="{Binding ToastItems}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,17" Width="432" Height="78">
+                                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <TextBlock Text="{Binding SentAt}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </controls:PivotItem>
+            <controls:PivotItem Header="raw" Margin="0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Keep this app running to see the Push Notifications received from the Appacitive Server." Margin="24,0,24,10" TextWrapping="Wrap" 
+                            Style="{StaticResource PhoneTextSmallStyle}"></TextBlock>
+                    <ListBox x:Name="rawListBox" Grid.Row="1" Margin="14,0,0,0" ItemsSource="{Binding RawItems}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,17" Width="432" Height="78">
+                                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <TextBlock Text="{Binding SentAt}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </controls:PivotItem>
+            <controls:PivotItem Header="settings">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0"  Margin="0,-6,0,0">
+                            <TextBlock Text="Device Id" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}"/>
+                            <TextBlock x:Name="txtId" Text="... "  Style="{StaticResource PhoneTextLargeStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1"  Margin="0,28,0,0">
+                            <TextBlock Text="Location" Margin="12,0,0,0" Style="{StaticResource PhoneTextSmallStyle}"/>
+                            <TextBlock x:Name="txtLat" Text="... "  Style="{StaticResource PhoneTextLargeStyle}"/>
+                            <TextBlock x:Name="txtLon" Text="..."  Style="{StaticResource PhoneTextLargeStyle}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2"  Margin="0,28,0,0">
+                            <TextBlock Text="Channel" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSmallStyle}"/>
+                            <TextBox x:Name="txtChannel" Margin="2,0,0,0" InputScope="Chat" />
+                            <Button x:Name="btnSetChannel" Content="Set Channel" IsEnabled="False" HorizontalAlignment="Left" Padding="18, 4, 18, 6" Margin="2,0,0,0"></Button>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+</phone:PhoneApplicationPage>
