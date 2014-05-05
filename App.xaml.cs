@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Appacitive.Sdk;
 
 namespace Push
 {
@@ -82,6 +83,7 @@ namespace Push
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             //Initializing Appacitive .Net SDK
+            
 
             //Add hooks for push notifications
             PushManager.Init();
