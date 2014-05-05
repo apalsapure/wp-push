@@ -80,13 +80,20 @@ namespace Push
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
-        private void Application_Launching(object sender, LaunchingEventArgs e)
+        private async void Application_Launching(object sender, LaunchingEventArgs e)
         {
             //Initializing Appacitive .Net SDK
-            
+            AppContext.Initialize("{{APP ID}}", "{{API Key}}", Appacitive.Sdk.Environment.Sandbox);
 
-            //Add hooks for push notifications
-            PushManager.Init();
+            try
+            {
+                //Add hooks for push notifications
+                await PushManager.Init();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please check your internet connectivity.");
+            }
         }
 
         // Code to execute when the application is activated (brought to foreground)

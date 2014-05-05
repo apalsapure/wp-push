@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Device.Location;
+using Appacitive.Sdk;
 
 namespace Push
 {
@@ -35,6 +36,11 @@ namespace Push
         // Load data for the ViewModel Items
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if ((AppContext.DeviceContext == null || AppContext.DeviceContext.CurrentDevice == null) && NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+                return;
+            }
             //hide the progress bar
             progress.Visibility = System.Windows.Visibility.Collapsed;
             

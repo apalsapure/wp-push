@@ -1,19 +1,25 @@
-﻿using Microsoft.Phone.Notification;
+﻿using Appacitive.Sdk;
+using Microsoft.Phone.Notification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Push
 {
     public class PushManager
     {
-        public static void Init()
+        public async static Task Init()
         {
             //register device and add hooks for push notifications
+            await AppContext.DeviceContext.RegisterCurrentDeviceAsync();
+
+            AppContext.DeviceContext.Notifications.HttpNotificationReceived += OnHttpNotificationReceived;
+            AppContext.DeviceContext.Notifications.ShellToastNotificationReceived += OnShellToastNotificationReceived;
         }
 
-        protected void OnHttpNotificationReceived(object sender, HttpNotificationEventArgs e)
+        static void OnHttpNotificationReceived(object sender, HttpNotificationEventArgs e)
         {
             if (e.Notification == null || e.Notification.Body == null) App.ViewModel.AddRawItem("No Content");
             else
@@ -24,7 +30,7 @@ namespace Push
             }
         }
 
-        protected void OnShellToastNotificationReceived(object sender, NotificationEventArgs e)
+        static void OnShellToastNotificationReceived(object sender, NotificationEventArgs e)
         {
             if (e.Collection == null || e.Collection.Count == 0)
             {
