@@ -13,7 +13,7 @@ namespace Push
             //register device and add hooks for push notifications
         }
 
-        protected void OnHttpNotificationReceived(object sender, HttpNotificationEventArgs e)
+        static void OnHttpNotificationReceived(object sender, HttpNotificationEventArgs e)
         {
             if (e.Notification == null || e.Notification.Body == null) App.ViewModel.AddRawItem("No Content");
             else
@@ -24,7 +24,7 @@ namespace Push
             }
         }
 
-        protected void OnShellToastNotificationReceived(object sender, NotificationEventArgs e)
+        static void OnShellToastNotificationReceived(object sender, NotificationEventArgs e)
         {
             if (e.Collection == null || e.Collection.Count == 0)
             {
