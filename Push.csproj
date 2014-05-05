@@ -74,7 +74,9 @@
     </Compile>
     <Compile Include="Manager\PushManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="ViewModels\BaseItemViewModel.cs" />
+    <Compile Include="ViewModels\ToastItemViewModel.cs" />
+    <Compile Include="ViewModels\RawItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

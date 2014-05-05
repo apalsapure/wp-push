@@ -20,15 +20,15 @@ namespace Push
     {
         public MainViewModel()
         {
-            this.RawItems = new ObservableCollection<ItemViewModel>();
-            this.ToastItems = new ObservableCollection<ItemViewModel>();
+            this.RawItems = new ObservableCollection<RawItemViewModel>();
+            this.ToastItems = new ObservableCollection<ToastItemViewModel>();
         }
 
         /// <summary>
         /// A collection for ItemViewModel objects.
         /// </summary>
-        public ObservableCollection<ItemViewModel> RawItems { get; private set; }
-        public ObservableCollection<ItemViewModel> ToastItems { get; private set; }
+        public ObservableCollection<RawItemViewModel> RawItems { get; private set; }
+        public ObservableCollection<ToastItemViewModel> ToastItems { get; private set; }
 
         public bool IsDataLoaded
         {
@@ -42,23 +42,39 @@ namespace Push
         public void LoadData()
         {
             // Sample data; replace with real data
-            this.RawItems.Add(new ItemViewModel() { Message = "raw one" });
-            this.RawItems.Add(new ItemViewModel() { Message = "raw two" });
-            this.RawItems.Add(new ItemViewModel() { Message = "raw three" });
-            this.RawItems.Add(new ItemViewModel() { Message = "raw four" });
-            this.RawItems.Add(new ItemViewModel() { Message = "raw five" });
-            this.RawItems.Add(new ItemViewModel() { Message = "raw six" });
-            this.RawItems.Add(new ItemViewModel() { Message = "raw seven" });
+            this.RawItems.Add(new RawItemViewModel() { Message = "raw one" });
+            this.RawItems.Add(new RawItemViewModel() { Message = "raw two" });
+            this.RawItems.Add(new RawItemViewModel() { Message = "raw three" });
+            this.RawItems.Add(new RawItemViewModel() { Message = "raw four" });
+            this.RawItems.Add(new RawItemViewModel() { Message = "raw five" });
+            this.RawItems.Add(new RawItemViewModel() { Message = "raw six" });
+            this.RawItems.Add(new RawItemViewModel() { Message = "raw seven" });
 
-            this.ToastItems.Add(new ItemViewModel() { Message = "toast one" });
-            this.ToastItems.Add(new ItemViewModel() { Message = "toast two" });
-            this.ToastItems.Add(new ItemViewModel() { Message = "toast three" });
-            this.ToastItems.Add(new ItemViewModel() { Message = "toast four" });
-            this.ToastItems.Add(new ItemViewModel() { Message = "toast five" });
-            this.ToastItems.Add(new ItemViewModel() { Message = "toast six" });
-            this.ToastItems.Add(new ItemViewModel() { Message = "toast seven" });
+            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast one" });
+            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast two" });
+            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast three" });
+            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast four" });
+            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast five" });
+            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast six" });
+            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast seven" });
 
             this.IsDataLoaded = true;
+        }
+
+        public void AddToastItem(string text1, string text2, string param = null)
+        {
+            var itemViewModel = new ToastItemViewModel();
+            itemViewModel.Text1 = text1;
+            itemViewModel.Text2 = text2;
+            itemViewModel.Param = param;
+            this.ToastItems.Add(itemViewModel);
+        }
+
+        public void AddRawItem(string text)
+        {
+            var itemViewModel = new RawItemViewModel();
+            itemViewModel.Message = text;
+            this.RawItems.Add(itemViewModel);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
