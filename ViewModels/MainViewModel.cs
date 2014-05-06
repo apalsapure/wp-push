@@ -41,22 +41,22 @@ namespace Push
         /// </summary>
         public void LoadData()
         {
-            // Sample data; replace with real data
-            this.RawItems.Add(new RawItemViewModel() { Message = "raw one" });
-            this.RawItems.Add(new RawItemViewModel() { Message = "raw two" });
-            this.RawItems.Add(new RawItemViewModel() { Message = "raw three" });
-            this.RawItems.Add(new RawItemViewModel() { Message = "raw four" });
-            this.RawItems.Add(new RawItemViewModel() { Message = "raw five" });
-            this.RawItems.Add(new RawItemViewModel() { Message = "raw six" });
-            this.RawItems.Add(new RawItemViewModel() { Message = "raw seven" });
+            //// Sample data; replace with real data
+            //this.RawItems.Add(new RawItemViewModel() { Message = "raw one" });
+            //this.RawItems.Add(new RawItemViewModel() { Message = "raw two" });
+            //this.RawItems.Add(new RawItemViewModel() { Message = "raw three" });
+            //this.RawItems.Add(new RawItemViewModel() { Message = "raw four" });
+            //this.RawItems.Add(new RawItemViewModel() { Message = "raw five" });
+            //this.RawItems.Add(new RawItemViewModel() { Message = "raw six" });
+            //this.RawItems.Add(new RawItemViewModel() { Message = "raw seven" });
 
-            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast one" });
-            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast two" });
-            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast three" });
-            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast four" });
-            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast five" });
-            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast six" });
-            this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast seven" });
+            //this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast one" });
+            //this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast two" });
+            //this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast three" });
+            //this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast four" });
+            //this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast five" });
+            //this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast six" });
+            //this.ToastItems.Add(new ToastItemViewModel() { Text1 = "toast seven" });
 
             this.IsDataLoaded = true;
         }

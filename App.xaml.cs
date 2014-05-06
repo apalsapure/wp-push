@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Appacitive.Sdk;
+using System.Threading;
 
 namespace Push
 {
@@ -80,20 +81,12 @@ namespace Push
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
-        private async void Application_Launching(object sender, LaunchingEventArgs e)
+        private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             //Initializing Appacitive .Net SDK
             AppContext.Initialize("{{APP ID}}", "{{API Key}}", Appacitive.Sdk.Environment.Sandbox);
 
-            try
-            {
-                //Add hooks for push notifications
-                await PushManager.Init();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Please check your internet connectivity.");
-            }
+            AppContext.Debug.ApiLogging.LogEverything();
         }
 
         // Code to execute when the application is activated (brought to foreground)

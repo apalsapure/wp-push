@@ -30,12 +30,13 @@ namespace Push
 
         void txtChannel_TextChanged(object sender, TextChangedEventArgs e)
         {
-            btnSetChannel.IsEnabled = txtChannel.Text.Trim().Length > 0;
+            btnSetChannel.IsEnabled = txtChannel.Text.Trim().Length > 0 && txtChannel.Text != string.Join(",", AppContext.DeviceContext.CurrentDevice.Channels.ToList());
         }
 
         // Load data for the ViewModel Items
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            await PushManager.Init();
             if ((AppContext.DeviceContext == null || AppContext.DeviceContext.CurrentDevice == null) && NavigationService.CanGoBack)
             {
                 NavigationService.GoBack();
@@ -43,7 +44,11 @@ namespace Push
             }
             //hide the progress bar
             progress.Visibility = System.Windows.Visibility.Collapsed;
-            
+
+            txtId.Text = AppContext.DeviceContext.CurrentDevice.Id;
+            txtChannel.Text = string.Join(",", AppContext.DeviceContext.CurrentDevice.Channels.ToList());
+
+
             if (!App.ViewModel.IsDataLoaded)
             {
                 App.ViewModel.LoadData();
@@ -83,6 +88,30 @@ namespace Push
             var epl = e.Position.Location;
             txtLat.Text = epl.Latitude.ToString();
             txtLon.Text = epl.Longitude.ToString();
+
+            AppContext.DeviceContext.CurrentDevice.Location = new Geocode((decimal)epl.Latitude, (decimal)epl.Longitude);
+            AppContext.DeviceContext.CurrentDevice.SaveAsync();
+
+        }
+
+        private async void btnSetChannel_Click(object sender, RoutedEventArgs e)
+        {
+            ((Button)sender).IsEnabled = false;
+            progress.Visibility = System.Windows.Visibility.Visible;
+            AppContext.DeviceContext.CurrentDevice.Channels.Clear();
+            AppContext.DeviceContext.CurrentDevice.Channels.AddRange(txtChannel.Text.Trim().Split(',').ToList());
+            await AppContext.DeviceContext.CurrentDevice.SaveAsync();
+            progress.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private async void btnResetBadge_Click(object sender, RoutedEventArgs e)
+        {
+            ((Button)sender).IsEnabled = false;
+            progress.Visibility = System.Windows.Visibility.Visible;
+            AppContext.DeviceContext.CurrentDevice.Badge = 0;
+            await AppContext.DeviceContext.CurrentDevice.SaveAsync();
+            progress.Visibility = System.Windows.Visibility.Collapsed;
+            ((Button)sender).IsEnabled = true;
         }
     }
 }

@@ -48,8 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Appacitive.Sdk">
-      <HintPath>..\..\..\..\appacitive-dotnet-sdk\bin\wp7\Appacitive.Sdk.dll</HintPath>
+    <Reference Include="Appacitive.Sdk, Version=0.9.8.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\appacitive-dotnet-sdk\src\Appacitive.Sdk.WindowsPhone7\Bin\Debug\Appacitive.Sdk.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />

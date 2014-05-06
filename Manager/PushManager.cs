@@ -12,9 +12,10 @@ namespace Push
     {
         public async static Task Init()
         {
-            //register device and add hooks for push notifications
+            //register device
             await AppContext.DeviceContext.RegisterCurrentDeviceAsync();
 
+            //add hooks for push notifications
             AppContext.DeviceContext.Notifications.HttpNotificationReceived += OnHttpNotificationReceived;
             AppContext.DeviceContext.Notifications.ShellToastNotificationReceived += OnShellToastNotificationReceived;
         }
