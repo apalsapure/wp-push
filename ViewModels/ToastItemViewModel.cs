@@ -56,11 +56,13 @@ namespace Push
             {
                 if (value != _text2)
                 {
-                    _text1 = value;
+                    _text2 = value;
                     NotifyPropertyChanged("Text2");
                 }
             }
         }
+
+        public string Text { get { return Text1 + ": " + Text2; } }
 
         private string _param;
         /// <summary>

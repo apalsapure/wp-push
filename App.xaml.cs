@@ -85,8 +85,6 @@ namespace Push
         {
             //Initializing Appacitive .Net SDK
             AppContext.Initialize("{{APP ID}}", "{{API Key}}", Appacitive.Sdk.Environment.Sandbox);
-
-            AppContext.Debug.ApiLogging.LogEverything();
         }
 
         // Code to execute when the application is activated (brought to foreground)

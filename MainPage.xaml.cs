@@ -91,7 +91,6 @@ namespace Push
 
             AppContext.DeviceContext.CurrentDevice.Location = new Geocode((decimal)epl.Latitude, (decimal)epl.Longitude);
             AppContext.DeviceContext.CurrentDevice.SaveAsync();
-
         }
 
         private async void btnSetChannel_Click(object sender, RoutedEventArgs e)

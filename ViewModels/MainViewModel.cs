@@ -67,14 +67,20 @@ namespace Push
             itemViewModel.Text1 = text1;
             itemViewModel.Text2 = text2;
             itemViewModel.Param = param;
-            this.ToastItems.Add(itemViewModel);
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                this.ToastItems.Add(itemViewModel);
+            });
         }
 
         public void AddRawItem(string text)
         {
             var itemViewModel = new RawItemViewModel();
             itemViewModel.Message = text;
-            this.RawItems.Add(itemViewModel);
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                this.RawItems.Add(itemViewModel);
+            });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
